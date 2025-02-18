@@ -14,8 +14,9 @@ import Drawer from '@mui/material/Drawer';
 // import ColorModeIconDropdown from '.././theme/ColorModeIconDropdown';
 // import Sitemark from './SitemarkIcon';
 
-import { BrowserRouter as Router, Route, Link,useNavigate } from "react-router-dom";
-// import About from "src/pages/about.tsx";
+import { BrowserRouter as Router, Route, Link, useNavigate } from "react-router-dom";
+// import ROUTES from "../../store/page_routes";
+import ROUTES from "src/store/page_routes";
 
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   display: 'flex',
@@ -32,7 +33,6 @@ const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   boxShadow: ((theme as any).vars || theme).shadows[1],
   padding: '8px 12px',
 }));
-
 
 export default function Appbar() {
   const navigate = useNavigate();
@@ -54,28 +54,19 @@ export default function Appbar() {
     >
       <Container maxWidth="lg">
         <StyledToolbar variant="dense" disableGutters>
+
+          {/* Pages Button */}
           <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center', px: 0 }}>
-            {/* <Sitemark /> */}
             <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-              <Button variant="text" color="info" size="small" onClick={() => navigate("/")}>首頁
+            {ROUTES.map(({ path, name }) => (
+              <Button key={path} variant="text" color="info" size="small" onClick={() => navigate(path)}>
+                {name}
               </Button>
-              <Button variant="text" color="info" size="small" onClick={() => navigate("/about")}>
-                About
-              </Button>
-              {/* <Button variant="text" color="info" size="small">
-                Highlights
-              </Button>
-              <Button variant="text" color="info" size="small">
-                Pricing
-              </Button>
-              <Button variant="text" color="info" size="small" sx={{ minWidth: 0 }}>
-                FAQ
-              </Button>
-              <Button variant="text" color="info" size="small" sx={{ minWidth: 0 }}>
-                Blog
-              </Button> */}
+            ))}
             </Box>
           </Box>
+
+          {/* Sign Button */}
           <Box
             sx={{
               display: { xs: 'none', md: 'flex' },
@@ -83,14 +74,12 @@ export default function Appbar() {
               alignItems: 'center',
             }}
           >
-            <Button color="primary" variant="text" size="small">
-              Sign in
-            </Button>
-            <Button color="primary" variant="contained" size="small">
-              Sign up
-            </Button>
-            {/* <ColorModeIconDropdown /> */}
+            <Button variant="text" size="small">Sign in</Button>
+            <Button variant="contained" size="small">Sign up</Button>
           </Box>
+
+
+          {/* Is responsive, using a Drawer for small screens. */}
           <Box sx={{ display: { xs: 'flex', md: 'none' }, gap: 1 }}>
             {/* <ColorModeIconDropdown size="medium" /> */}
             {/* <IconButton aria-label="Menu button" onClick={toggleDrawer(true)}>

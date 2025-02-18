@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router } from "react-router-dom";
+import { Box } from "@mui/material";
 
 import Appbar from './components/tools/app_bar.tsx';
 import AppRoutes from "./routers/app_routers.tsx";
