@@ -1,25 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router } from "react-router-dom";
 
-function App() {
+import Appbar from './components/tools/app_bar.tsx';
+import AppRoutes from "./routers/app_routers.tsx";
+
+function AppLayout() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <React.Fragment> {/* JSX expressions must have one parent element. */}
+      <Appbar />
+      <AppRoutes />
+    </React.Fragment>
   );
 }
 
-export default App;
+export default function App() {
+  return (
+    <Router>
+      <AppLayout />
+    </Router>
+  );
+}
