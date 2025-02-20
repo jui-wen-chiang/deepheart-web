@@ -1,21 +1,8 @@
 import * as React from 'react';
-import { styled, alpha } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import Button from '@mui/material/Button';
-// import IconButton from '@mui/material/IconButton';
-import Container from '@mui/material/Container';
-import Divider from '@mui/material/Divider';
-import MenuItem from '@mui/material/MenuItem';
-import Drawer from '@mui/material/Drawer';
-// import MenuIcon from '@mui/icons-material/Menu';
-// import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
-// import ColorModeIconDropdown from '.././theme/ColorModeIconDropdown';
-// import Sitemark from './SitemarkIcon';
-
 import { BrowserRouter as Router, Route, Link, useNavigate } from "react-router-dom";
-// import ROUTES from "../../store/page_routes";
+
+import { styled, alpha } from '@mui/material/styles';
+import { Box, AppBar, Toolbar, Button, Container, Divider, MenuItem, Drawer } from "src/components/mui";
 import ROUTES from "src/store/page_routes";
 
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({
@@ -58,11 +45,11 @@ export default function Appbar() {
           {/* Pages Button */}
           <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center', px: 0 }}>
             <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-            {ROUTES.map(({ path, name }) => (
-              <Button key={path} variant="text" color="info" size="small" onClick={() => navigate(path)}>
-                {name}
-              </Button>
-            ))}
+              {ROUTES.map(({ path, name }) => (
+                <Button key={path} variant="text" color="info" size="small" onClick={() => navigate(path)}>
+                  {name}
+                </Button>
+              ))}
             </Box>
           </Box>
 
@@ -81,10 +68,6 @@ export default function Appbar() {
 
           {/* Is responsive, using a Drawer for small screens. */}
           <Box sx={{ display: { xs: 'flex', md: 'none' }, gap: 1 }}>
-            {/* <ColorModeIconDropdown size="medium" /> */}
-            {/* <IconButton aria-label="Menu button" onClick={toggleDrawer(true)}>
-              <MenuIcon />
-            </IconButton> */}
             <Drawer
               anchor="top"
               open={open}
@@ -96,23 +79,7 @@ export default function Appbar() {
               }}
             >
               <Box sx={{ p: 2, backgroundColor: 'background.default' }}>
-                <Box
-                  sx={{
-                    display: 'flex',
-                    justifyContent: 'flex-end',
-                  }}
-                >
-                  {/* <IconButton onClick={toggleDrawer(false)}>
-                    <CloseRoundedIcon />
-                  </IconButton> */}
-                </Box>
-
                 <MenuItem>Item</MenuItem>
-                {/* <MenuItem>Testimonials</MenuItem>
-                <MenuItem>Highlights</MenuItem>
-                <MenuItem>Pricing</MenuItem>
-                <MenuItem>FAQ</MenuItem>
-                <MenuItem>Blog</MenuItem> */}
                 <Divider sx={{ my: 3 }} />
                 <MenuItem>
                   <Button color="primary" variant="contained" fullWidth>
