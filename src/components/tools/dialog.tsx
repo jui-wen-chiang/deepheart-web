@@ -2,8 +2,11 @@ import { Dialog, DialogTitle, DialogContent, DialogActions, Box, Button } from '
 import RadarChart from 'src/components/charts/radar'
 import { pagelayout, basicCenterlayout, twoColslayout, leftColumn, rightColumn } from 'src/assets/styles/commonStyles'
 
+import { useTranslation } from "react-i18next";
 
 export default function ModalDialog({ open, handleClose, title, children }) {
+    const { t } = useTranslation(); // 取得翻譯函式
+
     return (
         <Dialog open={open} onClose={handleClose}>
             <DialogTitle>{title}</DialogTitle>
@@ -14,7 +17,7 @@ export default function ModalDialog({ open, handleClose, title, children }) {
                 </Box>
             </DialogContent>
             <DialogActions>
-                <Button onClick={handleClose}>關閉</Button>
+                <Button onClick={handleClose}>{t("close")}</Button>
             </DialogActions>
         </Dialog>
     );
