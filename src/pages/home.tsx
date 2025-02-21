@@ -1,38 +1,38 @@
 import * as React from 'react';
+import { useState } from "react";
 
 import { Container, Box, Button } from 'src/components/mui';
 
 import TwoLevelPieChart from 'src/components/charts/pie'
 import PieChart from 'src/components/charts/pie2'
 import PositiveAndNegativeBarChart from 'src/components/charts/bar'
-import RadarChart from 'src/components/charts/radar'
 import { LineChart } from "@mui/x-charts/LineChart";
+import ModalDialog from 'src/components/tools/dialog'
 
 import { pagelayout, basicCenterlayout, twoColslayout, leftColumn, rightColumn } from 'src/assets/styles/commonStyles'
 
 
 export default function HomePage() {
+  const [activeDialog, setActiveDialog] = useState(null);
+
+
   return (
     <Container sx={pagelayout}>
       <Box sx={basicCenterlayout}>
         <h1>Homepage</h1>
-        <p>is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-        <Button variant="contained">Contained</Button>
+        <p>is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
+        <Button variant="contained" onClick={() => setActiveDialog("input_feel")}>
+          Input Feel
+        </Button>
       </Box>
 
-      <Box sx={{ ...basicCenterlayout, height: "100vh", width: "100%" }}>
-        <RadarChart />
-      </Box>
+      <ModalDialog
+        open={activeDialog === "input_feel"}
+        handleClose={() => setActiveDialog(null)}
+        title="Your Feel">
+        <p>這是children內容。</p>
+      </ModalDialog>
 
-      <Box sx={twoColslayout}>
-        <Box sx={rightColumn}>
-          <h2>2week Emotion Pie</h2>
-          <p>is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries.</p>
-        </Box>
-        <Box sx={{ ...leftColumn, height: "100vh", width: "100%" }}>
-          <PieChart />
-        </Box>
-      </Box>
 
       <Box sx={{ height: "300px", width: "100%" }}>
         <h2>Trend</h2>
@@ -45,6 +45,22 @@ export default function HomePage() {
           ]}
         />
       </Box>
+
+      {/* <Box sx={{ ...basicCenterlayout, height: "100vh", width: "100%" }}>
+        <RadarChart />
+      </Box> */}
+
+      <Box sx={twoColslayout}>
+        <Box sx={rightColumn}>
+          <h2>2week Emotion Pie</h2>
+          <p>is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries.</p>
+        </Box>
+        <Box sx={{ ...leftColumn, height: "100vh", width: "100%" }}>
+          <PieChart />
+        </Box>
+      </Box>
+
+
     </Container>
   )
 }
