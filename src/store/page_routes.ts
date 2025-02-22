@@ -1,6 +1,8 @@
 import * as React from 'react';
 import HomePage from "../pages/home";
 import AboutPage from "../pages/about";
+import DashboardPage from "../pages/dashboard";
+
 import TestPage from "../pages/test";
 
 export interface RouteConfig {
@@ -19,6 +21,11 @@ export const ROUTES: RouteConfig[] = [
     path: "/about",
     name: "About",
     element: React.createElement(AboutPage)
+  },
+  {
+    path: "/dashboard",
+    name: "Dashboard",
+    element: React.createElement(DashboardPage)
   },
   {
     path: "/test",
