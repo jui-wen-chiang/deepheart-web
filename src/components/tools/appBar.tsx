@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Link, useNavigate } from "react-router-
 
 import { styled, alpha } from '@mui/material/styles';
 import { Box, AppBar, Toolbar, Button, Container, Divider, MenuItem, Drawer } from "src/components/mui";
-import ROUTES from "src/store/page_routes";
+import ROUTES from "src/store/pageRouters";
 
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   display: 'flex',

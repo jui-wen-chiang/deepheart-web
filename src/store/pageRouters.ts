@@ -3,7 +3,7 @@ import HomePage from "../pages/home";
 import AboutPage from "../pages/about";
 import DashboardPage from "../pages/dashboard";
 
-import TestPage from "../pages/test";
+import TestPage from "../mocks/page/test";
 
 export interface RouteConfig {
   path: string;
