@@ -1,47 +1,28 @@
 import * as React from 'react';
 import ReactECharts from "echarts-for-react";
 
-const RadarChart = () => {
+import { radarOptions, RadarType } from "./options/radarOptions";
+
+interface RadarChartProps {
+  type: RadarType;
+}
+
+function RadarChart({ type }: RadarChartProps) {
+
+  const baseOption = { ...radarOptions.base }; // not affected by the original base pie options
+
+  // merge baseOption with customOption
+  const customOption = radarOptions[type] || { series: [] };
   const option = {
-    title: {
-      text: "Emotion",
-    },
-    tooltip: {},
-    legend: {
-      data: ["個人A", "個人B"],
-    },
-    radar: {
-      indicator: [
-        { name: "攻擊力", max: 100 },
-        { name: "防禦力", max: 100 },
-        { name: "速度", max: 100 },
-        { name: "技巧", max: 100 },
-        { name: "魔力", max: 100 },
-      ],
-    },
-    series: [
-      {
-        name: "能力對比",
-        type: "radar",
-        data: [
-          {
-            value: [80, 90, 70, 85, 60],
-            name: "個人A",
-          },
-          {
-            value: [60, 80, 75, 70, 90],
-            name: "個人B",
-          },
-        ],
-      },
-    ],
+    ...baseOption,
+    ...customOption,
+    series: (customOption.series || []).map((customSeriesItem, index) => ({
+      ...baseOption.series[0],    // Merge with the first element of baseOption.series
+      ...customSeriesItem,       // Merge with the corresponding element from customOption.series
+    })),
   };
 
-  return (
-    // <div style={{ width: "100%", height: "400px" }}>
-      <ReactECharts option={option} style={{ width: "100%", height: "100%" }} />
-    // </div>
-  );
-};
+  return <ReactECharts option={option} />;
+}
 
 export default RadarChart;
