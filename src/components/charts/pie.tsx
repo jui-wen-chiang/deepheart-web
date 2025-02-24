@@ -1,51 +1,31 @@
 import * as React from 'react';
-import { PieChart } from '@mui/x-charts/PieChart';
+import ReactECharts from "echarts-for-react";
 
-const fullcontainer: React.CSSProperties = {
-  padding: '2rem'
-};
+import { pieOptions, PieType } from "./options/pieOptions";
+import demoData from "src/mocks/data/chartsData.json";
 
-const data1 = [
-  { label: 'Group A', value: 400 },
-  { label: 'Group B', value: 300 },
-  { label: 'Group C', value: 300 },
-  { label: 'Group D', value: 200 },
-];
-const data2 = [
-  { label: 'A1', value: 100 },
-  { label: 'A2', value: 300 },
-  { label: 'B1', value: 100 },
-  { label: 'B2', value: 80 },
-  { label: 'B3', value: 40 },
-  { label: 'B4', value: 30 },
-  { label: 'B5', value: 50 },
-  { label: 'C1', value: 100 },
-  { label: 'C2', value: 200 },
-  { label: 'D1', value: 150 },
-  { label: 'D2', value: 50 },
-];
 
-export default function TwoLevelPieChart() {
-  return (
-    <PieChart
-      sx={fullcontainer}
-      series={[
-        {
-          innerRadius: 0,
-          outerRadius: 80,
-          data: data1,
-        },
-        {
-          innerRadius: 100,
-          outerRadius: 120,
-          data: data2,
-        },
-      ]}
-      width={300}
-      height={300}
-      slotProps={{
-        legend: { hidden: true },
-      }}
-    />
-  );
+interface PieChartProps {
+  type: PieType;
 }
+
+function PieChart({ type }: PieChartProps) {
+
+  const baseOption = { ...pieOptions.base }; // not affected by the original base pie options
+  // baseOption.series[0] = { ...baseOption.series[0], data: demoData.pie };
+
+  // merge baseOption with customOption
+  const customOption = pieOptions[type] || { series: [] };
+  const option = {
+    ...baseOption,
+    ...customOption,
+    series: (customOption.series || []).map((customSeriesItem, index) => ({
+      ...baseOption.series[0],    // Merge with the first element of baseOption.series
+      ...customSeriesItem,       // Merge with the corresponding element from customOption.series
+    })),
+  };
+
+  return <ReactECharts option={option} />;
+}
+
+export default PieChart;
