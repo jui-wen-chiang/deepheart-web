@@ -1,0 +1,28 @@
+{
+    "pie": [
+        {
+            "value": 10,
+            "name": "Sadness"
+        },
+        {
+            "value": 40,
+            "name": "Happiness"
+        },
+        {
+            "value": 5,
+            "name": "Fear"
+        },
+        {
+            "value": 25,
+            "name": "Anger"
+        },
+        {
+            "value": 10,
+            "name": "Surpriset"
+        },
+        {
+            "value": 10,
+            "name": "Disgust"
+        }
+    ]
+}
