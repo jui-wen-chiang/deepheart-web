@@ -4,7 +4,7 @@ import {
     Dialog, DialogTitle, DialogContent, DialogActions, Box, Button
 } from 'src/components/mui';
 import RadarChart from 'src/components/charts/radar'
-import { basicCenterlayout } from 'src/assets/styles/commonStyles'
+// import { BasicBox } from 'src/assets/styles/commonStyles'
 
 
 const chartBoard: React.CSSProperties = {
@@ -32,7 +32,7 @@ export default function ModalDialog({ open, handleClose }) {
             <DialogContent>
                 <p>提醒可以前往setting page 設定情緒種類。</p>
                 <Box>
-                    <RadarChart type="base" />
+                    <RadarChart type="basic" />
                 </Box>
             </DialogContent>
             <DialogActions>

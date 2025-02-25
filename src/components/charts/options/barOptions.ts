@@ -45,7 +45,7 @@ let emphasisStyle = {
     }
 };
 
-let baseTooltip = {
+let basicTooltip = {
     trigger: 'axis',
     axisPointer: {
         type: 'shadow'
@@ -62,7 +62,7 @@ let baseTooltip = {
 }
 
 export const barOptions = {
-    base: {
+    basic: {
         title: {
             text: 'BarLine Chart'
         },

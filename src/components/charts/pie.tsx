@@ -11,16 +11,16 @@ interface PieChartProps {
 
 function PieChart({ type }: PieChartProps) {
 
-  const baseOption = { ...pieOptions.base }; // not affected by the original base pie options
-  // baseOption.series[0] = { ...baseOption.series[0], data: demoData.pie };
+  const basicOption = { ...pieOptions.basic }; // not affected by the original basic pie options
+  // basicOption.series[0] = { ...basicOption.series[0], data: demoData.pie };
 
-  // merge baseOption with customOption
+  // merge basicOption with customOption
   const customOption = pieOptions[type] || { series: [] };
   const option = {
-    ...baseOption,
+    ...basicOption,
     ...customOption,
     series: (customOption.series || []).map((customSeriesItem, index) => ({
-      ...baseOption.series[0],    // Merge with the first element of baseOption.series
+      ...basicOption.series[0],    // Merge with the first element of basicOption.series
       ...customSeriesItem,       // Merge with the corresponding element from customOption.series
     })),
   };

@@ -6,7 +6,7 @@ import { Container, Box, Button } from 'src/components/mui';
 import { LineChart } from "@mui/x-charts/LineChart";
 import ModalDialog from 'src/components/tools/emtionDialog'
 
-import { pagelayout, basicCenterlayout, twoColslayout, leftColumn, rightColumn } from 'src/assets/styles/commonStyles'
+import { PageContainer, BasicBox, TwoColsBox, leftColumn, rightColumn } from 'src/assets/styles/commonStyles'
 
 
 export default function HomePage() {
@@ -14,14 +14,14 @@ export default function HomePage() {
 
 
   return (
-    <Container sx={pagelayout}>
-      <Box sx={basicCenterlayout}>
+    <PageContainer>
+      <BasicBox>
         <h1>Homepage</h1>
         <p>is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
         <Button variant="contained" onClick={() => setActiveDialog("input_feel")}>
           Input Feel
         </Button>
-      </Box>
+      </BasicBox>
 
       {/* <ModalDialog
         open={activeDialog === "input_feel"}
@@ -47,7 +47,7 @@ export default function HomePage() {
         <RadarChart />
       </Box> */}
 
-      <Box sx={twoColslayout}>
+      <TwoColsBox>
         <Box sx={rightColumn}>
           <h2>2week Emotion Pie</h2>
           <p>is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries.</p>
@@ -55,9 +55,9 @@ export default function HomePage() {
         <Box sx={{ ...leftColumn, height: "100vh", width: "100%" }}>
           {/* <PieChart /> */}
         </Box>
-      </Box>
+      </TwoColsBox>
 
 
-    </Container>
+    </PageContainer>
   )
 }

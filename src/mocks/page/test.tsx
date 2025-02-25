@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import { Container, Box, Button } from 'src/components/mui';
-import { pagelayout } from 'src/assets/styles/commonStyles'
+import { PageContainer } from 'src/assets/styles/commonStyles'
 
 import LanguageSwitcher from 'src/mocks/components/languageSwitcher'
 import PieChart from 'src/components/charts/pie'
@@ -28,7 +28,7 @@ export default function TestPage() {
     const { t } = useTranslation(); // 取得翻譯函式
 
     return (
-        <Container sx={pagelayout}>
+        <PageContainer>
             <Box sx={chartBoard}>
                 <LanguageSwitcher />
             </Box>
@@ -48,7 +48,7 @@ export default function TestPage() {
             </Box>
 
             <Box sx={chartBoard}>
-                <BarChart type="base" />
+                <BarChart type="basic" />
             </Box>
             <Box sx={chartBoard}>
                 <BarChart type="categoryStacking" />
@@ -61,7 +61,7 @@ export default function TestPage() {
             </Box>
 
             <Box sx={chartBoard}>
-                <RadarChart type="base" />
+                <RadarChart type="basic" />
             </Box>
 
 
@@ -75,6 +75,6 @@ export default function TestPage() {
                 open={activeDialog === "recordMood"}
                 handleClose={() => setActiveDialog(null)} />
 
-        </Container>
+        </PageContainer>
     )
 }

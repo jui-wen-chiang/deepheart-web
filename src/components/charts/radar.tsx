@@ -9,15 +9,15 @@ interface RadarChartProps {
 
 function RadarChart({ type }: RadarChartProps) {
 
-  const baseOption = { ...radarOptions.base }; // not affected by the original base pie options
+  const basicOption = { ...radarOptions.basic }; // not affected by the original basic pie options
 
-  // merge baseOption with customOption
+  // merge basicOption with customOption
   const customOption = radarOptions[type] || { series: [] };
   const option = {
-    ...baseOption,
+    ...basicOption,
     ...customOption,
     series: (customOption.series || []).map((customSeriesItem, index) => ({
-      ...baseOption.series[0],    // Merge with the first element of baseOption.series
+      ...basicOption.series[0],    // Merge with the first element of basicOption.series
       ...customSeriesItem,       // Merge with the corresponding element from customOption.series
     })),
   };

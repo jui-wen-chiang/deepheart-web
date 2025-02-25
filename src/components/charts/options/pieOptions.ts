@@ -26,7 +26,7 @@ const pieDefaultData = [
 ];
 
 export const pieOptions = {
-  base: {
+  basic: {
     title: {
       text: "Pie Chart",
       left: "center",

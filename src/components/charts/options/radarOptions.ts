@@ -53,7 +53,7 @@ const radarDefaultData = {
 };
 
 export const radarOptions = {
-    base: {
+    basic: {
         title: {
             text: radarDefaultData.title
         },
