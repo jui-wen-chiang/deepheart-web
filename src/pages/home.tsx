@@ -3,8 +3,6 @@ import { useState } from "react";
 
 import { Container, Box, Button } from 'src/components/mui';
 
-import TwoLevelPieChart from 'src/components/charts/pie'
-import PositiveAndNegativeBarChart from 'src/components/charts/bar'
 import { LineChart } from "@mui/x-charts/LineChart";
 import ModalDialog from 'src/components/tools/emtionDialog'
 

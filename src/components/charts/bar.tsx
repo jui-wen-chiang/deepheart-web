@@ -1,41 +1,30 @@
 import * as React from 'react';
-import { BarChart } from '@mui/x-charts/BarChart';
+import ReactECharts from "echarts-for-react";
 
-const uData = [4000, 3000, 2000, 2780, 1890, 2390, 3490];
-const pData = [2400, 1398, -9800, 3908, 4800, -3800, 4300];
+import { barOptions, BarType } from "./options/barOptions";
 
-const xLabels = [
-  'Page A',
-  'Page B',
-  'Page C',
-  'Page D',
-  'Page E',
-  'Page F',
-  'Page G',
-];
-
-export default function PositiveAndNegativeBarChart() {
-  return (
-    <BarChart
-      width={500}
-      height={300}
-      series={[
-        {
-          data: pData,
-          label: 'pv',
-        },
-        {
-          data: uData,
-          label: 'uv',
-        },
-      ]}
-      xAxis={[
-        {
-          data: xLabels,
-          scaleType: 'band',
-        },
-      ]}
-      yAxis={[{ max: 10000 }]}
-    />
-  );
+interface BarChartProps {
+    type: BarType;
 }
+
+function BarChart({ type }: BarChartProps) {
+
+    const baseOption = { ...barOptions.base }; // not affected by the original base pie options
+
+    // merge baseOption with customOption
+    const customOption = barOptions[type] || { series: [] };
+    const option = {
+        ...baseOption,
+        // ...customOption,
+        series: (customOption.series || []).map((customSeriesItem, index) => ({
+            ...baseOption.series[0],    // Merge with the first element of baseOption.series
+            ...customSeriesItem,       // Merge with the corresponding element from customOption.series
+        })),
+    };
+
+    // const option = { ...barOptions.test }; // not affected by the original base pie options
+
+    return <ReactECharts option={option} />;
+}
+
+export default BarChart;

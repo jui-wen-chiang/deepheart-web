@@ -9,6 +9,9 @@ import { pagelayout } from 'src/assets/styles/commonStyles'
 import LanguageSwitcher from 'src/mocks/components/languageSwitcher'
 import PieChart from 'src/components/charts/pie'
 import RadarChart from 'src/components/charts/radar'
+import BarChart from 'src/components/charts/bar'
+// import MyCard from 'src/components/charts/textCard'
+
 import ModalDialog from 'src/components/tools/emtionDialog'
 
 
@@ -30,9 +33,10 @@ export default function TestPage() {
                 <LanguageSwitcher />
             </Box>
 
-            <Box sx={chartBoard}>
-                <RadarChart type="base" />
-            </Box>
+            {/* <Box sx={chartBoard}>
+                <MyCard />
+            </Box> */}
+
             <Box sx={chartBoard}>
                 <PieChart type="classic" />
             </Box>
@@ -44,14 +48,33 @@ export default function TestPage() {
             </Box>
 
             <Box sx={chartBoard}>
-                <Button variant="contained" onClick={() => setActiveDialog("recordMood")}>
-                {t("recordMood.recordButton")}
-                </Button>
+                <BarChart type="base" />
+            </Box>
+            <Box sx={chartBoard}>
+                <BarChart type="categoryStacking" />
+            </Box>
+            <Box sx={chartBoard}>
+                <BarChart type="line" />
+            </Box>
+            <Box sx={chartBoard}>
+                <BarChart type="markPoint" />
             </Box>
 
+            <Box sx={chartBoard}>
+                <RadarChart type="base" />
+            </Box>
+
+
+
+            <Box sx={chartBoard}>
+                <Button variant="contained" onClick={() => setActiveDialog("recordMood")}>
+                    {t("recordMood.recordButton")}
+                </Button>
+            </Box>
             <ModalDialog
                 open={activeDialog === "recordMood"}
                 handleClose={() => setActiveDialog(null)} />
+
         </Container>
     )
 }
